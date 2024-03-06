@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://dugc4gpma716r"]
+
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_12co0"]
+[ext_resource type="PackedScene" uid="uid://dh5liqcf780k" path="res://Assets/Models/WILL_JIT.glb" id="1_x2hyi"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_cgf38"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_m8hjr"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_u8xtr"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_6j2k2"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_yyxpd"]
+[ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="6_5tats"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yyxq5"]
+shading_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwsmm"]
+diffuse_mode = 3
+specular_mode = 1
+
+[node name="XROrigin3D" type="XROrigin3D"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+
+[node name="WILL_JIT" parent="XRCamera3D" instance=ExtResource("1_x2hyi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.00543237, -3.23318, 0.0172386)
+
+[node name="LeftHand" type="XRController3D" parent="."]
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="LeftHand" instance=ExtResource("1_12co0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000162102, -0.000844628, 0.000473499)
+hand_material_override = SubResource("StandardMaterial3D_yyxq5")
+
+[node name="MovementDirect" parent="LeftHand" instance=ExtResource("2_cgf38")]
+strafe = true
+
+[node name="FunctionPickup" parent="LeftHand" instance=ExtResource("3_u8xtr")]
+
+[node name="RightHand" type="XRController3D" parent="."]
+tracker = &"right_hand"
+
+[node name="RightHand" parent="RightHand" instance=ExtResource("2_m8hjr")]
+hand_material_override = SubResource("StandardMaterial3D_rwsmm")
+
+[node name="MovementTurn" parent="RightHand" instance=ExtResource("4_6j2k2")]
+turn_mode = 2
+step_turn_angle = 45.0
+
+[node name="FunctionPickup" parent="RightHand" instance=ExtResource("3_u8xtr")]
+
+[node name="MovementJump" parent="RightHand" instance=ExtResource("6_5tats")]
+jump_button_action = "ax_button"
+
+[node name="PlayerBody" parent="." instance=ExtResource("5_yyxpd")]
+player_head_height = 0.0

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2nsdn16btpwk"]
+
+[ext_resource type="PackedScene" uid="uid://dh5liqcf780k" path="res://Assets/Models/WILL_JIT.glb" id="1_77b6w"]
+
+[node name="WILL_JIT" instance=ExtResource("1_77b6w")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="hairroby" parent="." index="3"]
+transform = Transform3D(0.831913, -0.0393524, 0, 0.0393524, 0.831913, 0, 0, 0, 0.832843, -0.131931, 3.32058, 0.0278888)
+
+[node name="hairbuzzcut" parent="." index="6"]
+visible = false
+
+[node name="hair afro" parent="." index="7"]
+visible = false
+
+[node name="cap will" parent="." index="8"]
+visible = false
+
+[node name="cap greaser" parent="." index="9"]
+visible = false
